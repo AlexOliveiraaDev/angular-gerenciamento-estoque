@@ -3,19 +3,18 @@
         <div class="menuDiv">
             <div class="logo">Gerenciador de Estoque</div>
             <div class="menu">
-                <div class="menuItem">Titulo 1</div><div class="menuItemActive">Titulo 1</div><div class="menuItem">Titulo 1</div><div class="menuItem">Titulo 1</div>
+                <div class="menuItem">Titulo 1</div>
+                <div class="menuItemActive">Titulo 1</div>
+                <div class="menuItem">Titulo 1</div>
+                <div class="menuItem">Titulo 1</div>
             </div>
-            <div><p class="logo">x</p></div>
+            <div>
+                <p class="logo">x</p>
+            </div>
         </div>
         <div class="tableDiv">
-            @for (item of listaProdutos; track $index) {
-                <p>{{item.produto}}</p>
-                <p>{{item.categoria}}</p>
-                <p>{{item.quantidade}}</p>
-                <p>{{item.preco}}</p>
-                <p>{{item.localizacao}}</p>
-                }
+            <app-tabela-produtos></app-tabela-produtos>
         </div>
-    
+
     </div>
 </div>

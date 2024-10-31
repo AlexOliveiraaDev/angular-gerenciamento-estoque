@@ -1,0 +1,33 @@
+td {
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 10px;
+}
+
+th {
+    color: #9D9EA0;
+    font-size: 0.7rem;
+    padding: 10px;
+}
+
+.status {
+    background-color: #14b8a6;
+    border-radius: 6px 6px 0px 0px;
+    color: #003930;
+}
+
+.statusItem {
+    border-left: 2px solid #14b8a6;
+    /* Borda na esquerda */
+    border-right: 2px solid #14b8a6;
+    /* Borda na direita */
+
+}
+
+p-button {
+    margin: 3px;
+}
+
+tr {
+    text-align: center;
+}

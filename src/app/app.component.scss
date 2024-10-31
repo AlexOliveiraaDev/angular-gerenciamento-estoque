@@ -1,4 +1,4 @@
-.mainDiv{
+.mainDiv {
     display: flex;
     width: 100%;
     height: 100vh;
@@ -6,64 +6,66 @@
     margin: 0px;
     padding: 50px;
     box-sizing: border-box;
-    
-    .secondaryDiv{
+
+    .secondaryDiv {
         display: flex;
         flex-direction: column;
 
         width: 100%;
-        border-color: #5bd4b0;
+        border-color: #14b8a6;
         border-width: 5px;
         border-style: solid;
         background-color: #2a2e31;
-        border-radius:  1rem;
-        
-            .menuDiv{
+        border-radius: 1rem;
+
+        .menuDiv {
+            display: flex;
+            flex-direction: row;
+            flex: 0 0 15%;
+            justify-content: space-around;
+            align-items: center;
+
+            .logo {
+                color: white;
+            }
+
+            .menu {
                 display: flex;
                 flex-direction: row;
-                flex: 0 0 15%;
-                justify-content: space-around;
                 align-items: center;
 
-                .logo{
+                .menuItem {
+
+                    height: 20px;
+                    padding: 5px;
                     color: white;
+                    border-radius: 5px;
+                    margin: 5px;
                 }
 
-                .menu{
-                    display: flex;
-                flex-direction: row;
-                align-items: center;
-                    .menuItem{
-                        
-                        height: 20px;
-                        padding: 5px;
-                        color: white;
-                        border-radius: 5px;
-                        margin: 5px;
-                    }
+                .menuItemActive {
 
-                    .menuItemActive{
-                        
-                        height: 20px;
-                        padding: 5px;
-                        background-color: white;
-                        border-radius: 5px;
-                        margin: 5px;
-                    }
-            }
-                
+                    height: 20px;
+                    padding: 5px;
+                    background-color: white;
+                    border-radius: 5px;
+                    margin: 5px;
+                }
             }
 
+        }
 
 
-            .tableDiv{
 
-                flex: 0 0 85%; /* Ocupa 20% da altura */
+        .tableDiv {
+
+            flex: 0 0 85%;
+            /* Ocupa 20% da altura */
             background-color: #fff;
-            border-radius:  0.8rem
+            border-radius: 0.8rem;
+            padding: 10px;
 
         }
 
     }
 }
-
