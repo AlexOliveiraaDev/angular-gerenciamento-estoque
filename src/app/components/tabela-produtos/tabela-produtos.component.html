@@ -1,18 +1,78 @@
 <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" [position]="'center'">
-    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <span class="p-text-secondary block mb-8">Adicionar novo Produto.</span>
+
     <div class="flex items-center gap-4 mb-4">
-        <label for="username" class="font-semibold w-24">Username</label>
-        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+        <label for="produto" class="font-semibold w-24">Produto</label>
+        <input pInputText id="produto" class="flex-auto" autocomplete="off" [(ngModel)]="item.produto" />
     </div>
+
     <div class="flex items-center gap-4 mb-8">
-        <label for="email" class="font-semibold w-24">Email</label>
-        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+        <label for="Categoria" class="font-semibold w-24">Categoria</label>
+        <p-dropdown class="flex-auto" [options]="categorias" optionLabel="name" optionValue="name"
+            placeholder="Selecione uma categoria" [(ngModel)]="item.categoria" />
     </div>
+
+    <div class="flex items-center gap-4 mb-8">
+        <label for="Quantidade" class="font-semibold w-24">Quantidade</label>
+        <p-inputNumber inputId="integeronly" [(ngModel)]="item.quantidade" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+        <label for="Preço" class="font-semibold w-24">Preço</label>
+        <p-inputNumber [(ngModel)]="item.preco" inputId="currency-us" mode="currency" currency="BRL" locale="pt-BR" />
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+        <label for="Categoria" class="font-semibold w-24">Localização</label>
+        <p-dropdown class="flex-auto" [options]="localizacao" optionValue="name" optionLabel="name"
+            placeholder="Selecione uma Localização" [(ngModel)]="item.localizacao" />
+    </div>
+
     <div class="flex justify-end gap-2">
         <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-        <p-button label="Save" (click)="visible = false" />
+        <p-button label="Save" (click)="visible = false" (onClick)="AdicionarProduto()" />
     </div>
 </p-dialog>
+
+
+<p-dialog header="Confirmar Exclusão" [(visible)]="displayConfirmation" [modal]="true" [style]="{width: '450px'}"
+    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="flex flex-column">
+        <div>Tem certeza de que deseja excluir este item?</div>
+        <div class="mt-4">
+            <span class="font-bold">Produto:</span> {{ item.produto }}
+        </div>
+        <div class="mt-2">
+            <span class="font-bold">Categoria:</span> {{ item.categoria }}
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button label="Não" icon="pi pi-times" class="p-button-text" (onClick)="displayConfirmation=false"></p-button>
+        <p-button label="Sim" icon="pi pi-check" class="p-button-text" (onClick)="confirmDelete()"></p-button>
+    </ng-template>
+</p-dialog>
+
+
+
+<p-dialog header="Vender Produto" [(visible)]="displayVenda" [modal]="true" [style]="{width: '450px'}"
+    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="flex flex-column">
+        <div class="mb-4">
+            <span class="font-bold">Produto:</span> {{ item.produto }}
+        </div>
+        <div class="flex flex-column mb-4">
+            <label for="quantidadeVenda" class="font-semibold">Quantidade:</label>
+            <p-inputNumber inputId="quantidadeVenda" [(ngModel)]="quantidadeVenda" [min]="1"
+                [max]="item.quantidade"></p-inputNumber>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button label="Cancelar" icon="pi pi-times" class="p-button-text" (onClick)="displayVenda=false"></p-button>
+        <p-button label="Confirmar" icon="pi pi-check" class="p-button-text" (onClick)="confirmarVenda()"></p-button>
+    </ng-template>
+</p-dialog>
+
+
 
 <div>
     <p-button (onClick)="ShowDialog()" class="novoProduto" label="Adicionar Produto" icon="pi pi-pen-to-square"
@@ -40,8 +100,10 @@
             <td>{{ product.preco }}</td>
             <td>{{ product.localizacao }}</td>
             <td class="statusItem">{{ product.localizacao }} </td>
-            <p-button class="buttonCart" icon="pi pi-cart-minus" aria-label="Realizar Venda" severity="contrast" />
-            <p-button class="buttonTrash" icon="pi pi-trash" aria-label="Deletar Produto" severity="danger" />
+            <p-button class="buttonCart" icon="pi pi-cart-minus" aria-label="Realizar Venda" severity="contrast"
+                (onClick)="showVendaDialog(product)" />
+            <p-button class="buttonTrash" icon="pi pi-trash" aria-label="Deletar Produto" severity="danger"
+                (onClick)="showConfirmDialog(product)" />
         </tr>
     </ng-template>
 </p-table>
